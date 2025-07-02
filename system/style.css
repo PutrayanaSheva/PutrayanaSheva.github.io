@@ -1,0 +1,162 @@
+@font-face {
+  font-family: 'OldEnglishFive';
+  src: url('../assets/fonts/OldEnglishFive.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  width: 100vw;
+  height: 100vh;
+}
+body {
+  min-height: 100vh;
+  min-width: 100vw;
+  box-sizing: border-box;
+  background: #000;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  font-family: 'Roboto', Arial, sans-serif;
+  overflow: hidden;
+  overflow-x: hidden;
+}
+.container {
+  text-align: center;
+  margin-top: 10vh;
+}
+.gothic, .subtitle, .footer {
+  position: relative;
+  filter: blur(0.2px) contrast(1.2);
+  animation: vhs-glitch 1.2s infinite linear alternate;
+}
+.gothic {
+  font-family: 'OldEnglishFive', cursive;
+  font-size: 4vw;
+  color: #fff;
+  letter-spacing: 0.1em;
+  margin-bottom: 0.5em;
+  background: url('../assets/images/textureone.jpg') center center/cover no-repeat;
+  background-size: 120%;
+  background-position: center;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-fill-color: transparent;
+  text-shadow:
+    0 1px 2px #222,
+    0 2px 6px #b9f2ff,
+    0 0 8px #fff,
+    1px 1px 2px #fff,
+    -1px -1px 2px #b9f2ff,
+    2px 2px 6px #fff,
+    -2px -2px 6px #b9f2ff;
+  transition: filter 0.3s;
+}
+.gothic:hover {
+  filter: brightness(1.3) drop-shadow(0 0 8px #fff) drop-shadow(0 0 16px #b9f2ff);
+}
+.gothic::after {
+  content: '';
+  position: absolute;
+  top: 35%;
+  left: 60%;
+  width: 2vw;
+  height: 2vw;
+  pointer-events: none;
+  background: radial-gradient(circle at 50% 50%, #fff 60%, rgba(255,255,255,0.2) 80%, transparent 100%);
+  clip-path: polygon(
+    50% 0%,
+    61% 35%,
+    98% 35%,
+    68% 57%,
+    79% 91%,
+    50% 70%,
+    21% 91%,
+    32% 57%,
+    2% 35%,
+    39% 35%
+  );
+  opacity: 0;
+  filter: blur(0.5px) brightness(1.8);
+  transition: opacity 0.3s;
+}
+.gothic:hover::after {
+  opacity: 0.85;
+  animation: flare-star 1.2s linear;
+}
+@keyframes flare-star {
+  0% { opacity: 0.2; transform: scale(0.7) rotate(0deg); }
+  10% { opacity: 1; transform: scale(1.2) rotate(15deg); }
+  20% { opacity: 0.7; transform: scale(1) rotate(30deg); }
+  100% { opacity: 0.2; transform: scale(0.7) rotate(360deg); }
+}
+.gothic::before, .gothic::after, .subtitle::before, .subtitle::after, .footer::before, .footer::after {
+  content: attr(data-text);
+  position: absolute;
+  left: 0; top: 0;
+  width: 100%;
+  z-index: -1;
+  opacity: 0.7;
+  pointer-events: none;
+}
+.gothic::before, .subtitle::before, .footer::before {
+  color: #0ff;
+  transform: translate(-2px, 0);
+  mix-blend-mode: lighten;
+}
+.gothic::after, .subtitle::after, .footer::after {
+  color: #f0f;
+  transform: translate(2px, 0);
+  mix-blend-mode: lighten;
+}
+@keyframes vhs-glitch {
+  0% { filter: blur(0.2px) contrast(1.2); }
+  10% { filter: blur(0.4px) contrast(1.3); }
+  20% { filter: blur(0.1px) contrast(1.1); }
+  30% { filter: blur(0.3px) contrast(1.2); }
+  40% { filter: blur(0.2px) contrast(1.2); }
+  50% { filter: blur(0.5px) contrast(1.4); }
+  60% { filter: blur(0.2px) contrast(1.2); }
+  70% { filter: blur(0.3px) contrast(1.3); }
+  80% { filter: blur(0.1px) contrast(1.1); }
+  90% { filter: blur(0.4px) contrast(1.3); }
+  100% { filter: blur(0.2px) contrast(1.2); }
+}
+.subtitle {
+  font-size: 1.5vw;
+  color: #fff;
+  margin-bottom: 2em;
+}
+.footer {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100vw;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: space-between;
+  padding: 0 2vw 1vw 2vw;
+  font-size: 1.2vw;
+  color: #fff;
+  font-family: 'Roboto', Arial, sans-serif;
+  z-index: 10;
+}
+@media (max-width: 600px) {
+  .gothic { font-size: 8vw; }
+  .subtitle { font-size: 3vw; }
+  .footer { font-size: 2.5vw; }
+}
+#babylon-canvas {
+  outline: none !important;
+  box-shadow: none !important;
+}
+#babylon-canvas:focus {
+  outline: none !important;
+  box-shadow: none !important;
+} 
